@@ -43,8 +43,8 @@ public class AlertRabbit {
                         .withSchedule(times)
                         .build();
                 scheduler.scheduleJob(job, trigger);
-
-                Thread.sleep(10000);  // Работает 10 секунд
+                /*Работает 10 секунд*/
+                Thread.sleep(10000);
                 scheduler.shutdown();
 
                 System.out.println(store);
@@ -54,7 +54,7 @@ public class AlertRabbit {
         }
     }
 
-    // Метод для создания соединения с базой данных
+    /*Метод для создания соединения с базой данных*/
     private static Connection initConnection(Properties properties) throws Exception {
         Class.forName("org.postgresql.Driver");
         String url = "jdbc:postgresql://localhost:5432/schema_db";
