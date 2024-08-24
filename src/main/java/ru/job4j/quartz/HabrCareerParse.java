@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * 2. Парсинг HTML страницы. [#260358].
  * По техническому заданию мы должны получить данные с сайта -
- * https://career.habr.com/vacancies?q=Java%20developer&type=all
+ * https:/career.habr.com/vacancies?q=Java%20developer&type=all
  */
 public class HabrCareerParse {
     private static final String SOURCE_LINK = "https://career.habr.com";
