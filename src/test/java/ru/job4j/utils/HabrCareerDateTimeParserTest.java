@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
  * 2.1. Преобразование даты [#289476].
  */
 class HabrCareerDateTimeParserTest {
-
     @Test
     void whenParseDateTimeThenCorrectLocalDateTime() {
         DateTimeParser parser = new HabrCareerDateTimeParser();
