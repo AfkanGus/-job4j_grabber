@@ -9,7 +9,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 
 /**
- * 2.1.1. Парсинг https:/career.habr.com/vacancies/java_developer?page=1.
+ * 2.1.1. Парсинг https:/career.habr.com/vacancies/java_developer?page=1
  * По техническому заданию мы должны получить данные с сайта -
  * https:/career.habr.com/vacancies?q=Java%20developer&type=all
  * Нужно парсить первые 5 страниц.
