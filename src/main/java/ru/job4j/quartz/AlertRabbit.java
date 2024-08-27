@@ -77,6 +77,7 @@ public class AlertRabbit {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+            @SuppressWarnings("unchecked")
             List<Long> store = (List<Long>) context.getJobDetail().getJobDataMap().get("store");
             store.add(System.currentTimeMillis());
         }
