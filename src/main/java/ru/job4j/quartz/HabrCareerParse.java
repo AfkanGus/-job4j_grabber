@@ -6,19 +6,32 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import javax.print.Doc;
 import java.io.IOException;
 
 /**
- * 2.1.1. Парсинг https:/career.habr.com/vacancies/java_developer?page=1
- * По техническому заданию мы должны получить данные с сайта -
- * https:/career.habr.com/vacancies?q=Java%20developer&type=all
- * Нужно парсить первые 5 страниц.
+ * 2.3. Загрузка деталей поста. [#285212]
  */
 public class HabrCareerParse {
     private static final String SOURCE_LINK = "https://career.habr.com";
     public static final String PREFIX = "/vacancies?page=";
     public static final String SUFFIX = "&q=Java%20developer&type=all";
-    public static final int COUNT_PAGES = 5;
+    public static final int COUNT_PAGES = 1;
+
+    private static String retrieveDescription(String link) {
+        try {
+            Document vacancyPage = Jsoup.connect(link).get();
+            Element descriptionElement = vacancyPage.select(".style-ugc").first();
+            if (descriptionElement != null) {
+                return descriptionElement.text();
+            } else {
+                return "Description not found";
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "Failed to retrieve description";
+    }
 
     public static void main(String[] args) throws IOException {
         for (int pageNumber = 1; pageNumber <= COUNT_PAGES; pageNumber++) {
@@ -33,7 +46,9 @@ public class HabrCareerParse {
                 String link = String.format("%s%s", SOURCE_LINK, linkElement.attr("href"));
                 Element dateElement = row.select(".vacancy-card__date time").first();
                 String date = dateElement.attr("datetime");
-                System.out.printf("Vacancy: %s%nLink: %s%nDate: %s%n%n", vacancyName, link, date);
+                String description = retrieveDescription(link);
+                System.out.printf("Vacancy: %s%nLink: %s%nDate: %s%nDescription: %s%n%n",
+                        vacancyName, link, date, description);
             });
         }
     }
