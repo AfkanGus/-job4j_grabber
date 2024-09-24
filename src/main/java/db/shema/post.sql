@@ -1,4 +1,4 @@
---  4. Схема таблицы Post [#1731]
+-- 4. Схема таблицы Post [#1731]
 CREATE TABLE post (
     id SERIAL ,
     "name" VARCHAR(255) ,
