@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+/**
+ * 5. PsqlStore [#285209].
+ */
 public class PsqlStore implements Store {
     private Connection connection;
 
@@ -97,7 +100,7 @@ public class PsqlStore implements Store {
         }
     }
 
-    public static void main(String[] args) throws Exception {
+/*    public static void main(String[] args) throws Exception {
         HabrCareerDateTimeParser timeParser = new HabrCareerDateTimeParser();
         HabrCareerParse parse = new HabrCareerParse(timeParser);
         Properties properties = new Properties();
@@ -113,6 +116,5 @@ public class PsqlStore implements Store {
             }
             System.out.println(psqlStore.findById(15));
             System.out.println(psqlStore.getAll());
-        }
-    }
+        }*/
 }

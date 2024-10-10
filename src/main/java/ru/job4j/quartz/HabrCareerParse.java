@@ -7,9 +7,11 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import ru.job4j.utils.DateTimeParser;
 import ru.job4j.utils.HabrCareerDateTimeParser;
+import ru.job4j.utils.Parse;
 import ru.job4j.utils.Post;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,7 @@ import java.util.List;
 /**
  * 2.4. HabrCareerParse [#285213]
  */
-public class HabrCareerParse {
+public class HabrCareerParse implements Parse {
     private static final String SOURCE_LINK = "https://career.habr.com";
     public static final String PREFIX = "/vacancies?page=";
     public static final String SUFFIX = "&q=Java%20developer&type=all";
@@ -43,7 +45,7 @@ public class HabrCareerParse {
         return "Failed to retrieve description";
     }
 
-    public List<Post> list(String link) throws IOException {
+    public List<Post> list(String link) {
         List<Post> posts = new ArrayList<>();
         try {
             for (int pageNumber = 1; pageNumber <= COUNT_PAGES; pageNumber++) {
@@ -78,7 +80,7 @@ public class HabrCareerParse {
         return posts;
     }
 
-    public static void main(String[] args) throws IOException {
+/*    public static void main(String[] args) throws IOException {
         DateTimeParser dateTimeParser = new HabrCareerDateTimeParser();
         HabrCareerParse habrCareerParse = new HabrCareerParse(dateTimeParser);
         List<Post> postList = habrCareerParse.list(SOURCE_LINK);
@@ -86,5 +88,5 @@ public class HabrCareerParse {
                 "Vacancy: %s%nLink: %s%nDate: %s%nDescription: %s%n%n",
                 post.getTitle(), post.getLink(), post.getCreated(), post.getDescription()
         ));
-    }
+    }*/
 }
