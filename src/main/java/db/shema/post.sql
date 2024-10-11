@@ -1,9 +1,9 @@
 -- 4. Схема таблицы Post [#1731]
-create TABLE post (
-    id SERIAL PRIMARY KEY ,
-    "name" VARCHAR(255) ,
-    "text" TEXT ,
-    link VARCHAR(255) unique,
+CREATE TABLE post (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255),
+    description TEXT,
+    link text UNIQUE,
     created TIMESTAMP
 );
 select * from post;
