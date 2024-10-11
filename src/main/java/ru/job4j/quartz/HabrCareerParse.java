@@ -62,7 +62,7 @@ public class HabrCareerParse implements Parse {
                     String date = dateElement.attr("datetime");
                     LocalDateTime dateTime = dateTimeParser.parse(date);
                     String description = retrieveDescription(vacancyLink);
-                    posts.add(new Post(0, vacancyName, vacancyLink, description, dateTime));
+                    posts.add(new Post(0, vacancyName, description, vacancyLink, dateTime));
                 });
             }
         } catch (IOException e) {
@@ -80,13 +80,4 @@ public class HabrCareerParse implements Parse {
         return posts;
     }
 
-/*    public static void main(String[] args) throws IOException {
-        DateTimeParser dateTimeParser = new HabrCareerDateTimeParser();
-        HabrCareerParse habrCareerParse = new HabrCareerParse(dateTimeParser);
-        List<Post> postList = habrCareerParse.list(SOURCE_LINK);
-        postList.forEach(post -> System.out.printf(
-                "Vacancy: %s%nLink: %s%nDate: %s%nDescription: %s%n%n",
-                post.getTitle(), post.getLink(), post.getCreated(), post.getDescription()
-        ));
-    }*/
 }
