@@ -9,26 +9,26 @@ import java.util.Objects;
 public class Post {
     public int id;
     public String title;
-    public String link;
     public String description;
+    public String link;
     public LocalDateTime created;
 
     public Post() {
 
     }
 
-    public Post(int id, String title, String link, String description, LocalDateTime created) {
+    public Post(int id, String title, String description, String link, LocalDateTime created) {
         this.id = id;
         this.title = title;
-        this.link = link;
         this.description = description;
+        this.link = link;
         this.created = created;
     }
 
-    public Post(String title, String link, String description, LocalDateTime created) {
+    public Post(String title, String description, String link, LocalDateTime created) {
         this.title = title;
-        this.link = link;
         this.description = description;
+        this.link = link;
         this.created = created;
     }
 
@@ -80,10 +80,9 @@ public class Post {
                 "id=" + id
                 +
                 ", title='" + title + '\''
+                + ", description='" + description + '\''
                 +
                 ", link='" + link + '\''
-                +
-                ", description='" + description + '\''
                 +
                 ", created=" + created + '}';
     }
