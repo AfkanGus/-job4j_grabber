@@ -44,7 +44,7 @@ public class Grabber implements Grab {
                 .build();
         SimpleScheduleBuilder times = simpleSchedule()
                 .withIntervalInSeconds(time)
-                .withRepeatCount(1);
+                .repeatForever();
         Trigger trigger = newTrigger()
                 .startNow()
                 .withSchedule(times)
@@ -101,6 +101,8 @@ public class Grabber implements Grab {
         var parse = new HabrCareerParse(new HabrCareerDateTimeParser());
         var store = new PsqlStore(config);
         var time = Integer.parseInt(config.getProperty("time"));
-        new Grabber(parse, store, scheduler, time, config).web(store);
+        Grabber g = new Grabber(parse, store, scheduler, time, config);
+        g.init();
+        g.web(store);
     }
 }
