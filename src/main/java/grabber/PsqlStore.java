@@ -34,7 +34,7 @@ public class PsqlStore implements Store {
 
     @Override
     public void save(Post post) {
-        try (PreparedStatement p = connection.prepareStatement("insert into post(name,text,link,created) "
+        try (PreparedStatement p = connection.prepareStatement("insert into post(title,description,link,created) "
                 + "values(?,?,?,?) ON CONFLICT (link) DO NOTHING", Statement.RETURN_GENERATED_KEYS)) {
             p.setString(1, post.getTitle());
             p.setString(2, post.getDescription());
@@ -54,8 +54,8 @@ public class PsqlStore implements Store {
     private Post generatePost(ResultSet resultSet) throws SQLException {
         return new Post(
                 resultSet.getInt("id"),
-                resultSet.getString("name"),
-                resultSet.getString("text"),
+                resultSet.getString("title"),
+                resultSet.getString("description"),
                 resultSet.getString("link"),
                 resultSet.getTimestamp("created").toLocalDateTime()
         );
@@ -100,7 +100,7 @@ public class PsqlStore implements Store {
         }
     }
 
-/*    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
         HabrCareerDateTimeParser timeParser = new HabrCareerDateTimeParser();
         HabrCareerParse parse = new HabrCareerParse(timeParser);
         Properties properties = new Properties();
@@ -114,7 +114,8 @@ public class PsqlStore implements Store {
             for (Post post : result) {
                 psqlStore.save(post);
             }
-            System.out.println(psqlStore.findById(15));
+            System.out.println(psqlStore.findById(2));
             System.out.println(psqlStore.getAll());
-        }*/
+        }
+    }
 }
